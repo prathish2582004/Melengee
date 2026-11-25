@@ -1,0 +1,43 @@
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  application:
+    name: melangee-backend
+
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/melangee?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:2004}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+
+melangee:
+  app:
+    jwtSecret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    jwtExpirationMs: ${JWT_EXPIRATION_MS:86400000} # 24 hours
+    initialAdminEmail: ${INITIAL_ADMIN_EMAIL:admin@melangee.com}
+    initialAdminPassword: ${INITIAL_ADMIN_PASSWORD:Admin@123456}
+    initialAdminName: ${INITIAL_ADMIN_NAME:Melangee Administrator}
+    corsAllowedOrigins: ${CORS_ALLOWED_ORIGINS:http://localhost:*,http://127.0.0.1:*}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+
